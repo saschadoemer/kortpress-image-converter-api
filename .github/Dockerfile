@@ -1,0 +1,11 @@
+FROM openjdk:21
+
+ADD target/kortpress-image-converter-api.jar /opt/application/application.jar
+
+RUN chmod 775 -R /opt/application && chown 1000:root -R /opt/application
+
+USER 1000
+EXPOSE 8080
+
+WORKDIR /opt/application
+ENTRYPOINT ["java","-jar","application.jar"]
